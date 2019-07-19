@@ -1,7 +1,11 @@
 package com.tradevan;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.tradevan.common.CommonTool;
 
 /**
  *
@@ -9,11 +13,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class Module1App 
+public class Module1App  implements CommandLineRunner
 {
+    @Autowired
+    private CommonTool tool;
+    
+    
+    public void init() {
+        System.out.println(tool.getText());
+    }
+    
     public static void main( String[] args )
     {
         SpringApplication.run(Module1App.class, args).close();
-        System.out.println("Module1");
+        
+    }
+    
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Run Module1!");
+        init();
     }
 }
